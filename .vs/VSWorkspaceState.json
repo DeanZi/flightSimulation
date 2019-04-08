@@ -1,6 +1,16 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\FlightSimulator",
+    "\\FlightSimulator\\dll",
+    "\\FlightSimulator\\FlightSimulator",
+    "\\FlightSimulator\\FlightSimulator\\Model",
+    "\\FlightSimulator\\FlightSimulator\\Model\\EventArgs",
+    "\\FlightSimulator\\FlightSimulator\\Model\\Interface",
+    "\\FlightSimulator\\FlightSimulator\\Properties",
+    "\\FlightSimulator\\FlightSimulator\\ViewModels",
+    "\\FlightSimulator\\FlightSimulator\\Views"
   ],
+  "SelectedNode": "\\FlightSimulator\\FlightSimulator.sln",
   "PreviewInSolutionExplorer": false
 }

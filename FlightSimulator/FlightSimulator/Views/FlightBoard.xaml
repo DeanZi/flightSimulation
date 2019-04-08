@@ -19,16 +19,24 @@
             <RotateTransform x:Key="rotate" Angle="90"/>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="6.5"/>
+            <ColumnDefinition Width="28"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Style="{StaticResource LabelStyle}" LayoutTransform="{StaticResource rotate}" VerticalAlignment="Center">Lon</TextBlock>
-        <d3:ChartPlotter Grid.Row="0" Grid.Column="1" LegendVisible="False" Name="plotter">
+        <TextBlock Style="{StaticResource LabelStyle}" LayoutTransform="{StaticResource rotate}" VerticalAlignment="Center" Grid.ColumnSpan="3" Margin="0,194,765,194.5">Lon</TextBlock>
+        <d3:ChartPlotter Grid.Row="0" Grid.Column="1" LegendVisible="False" Name="plotter" Grid.ColumnSpan="2" Margin="27.5,0,0,34" Grid.RowSpan="2">
         </d3:ChartPlotter>
-        <TextBlock Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center">Lat</TextBlock>
+        <TextBlock Grid.Row="1" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center" Grid.Column="2" Margin="351.5,4.5,385,4">Lat</TextBlock>
+        <Border Background="White" BorderBrush="Black" BorderThickness="1" Grid.Column="1" HorizontalAlignment="Left" Height="54" Margin="27.5,-54,0,0" VerticalAlignment="Top" Width="766" Grid.ColumnSpan="2">
+            <Grid>
+                <Button Margin="252,10,424,18" Background="Bisque">Connect</Button>
+                <Button Margin="387,10,289,18" Background="Bisque">Settings</Button>
+            </Grid>
+        </Border>
+
     </Grid>
 </UserControl>

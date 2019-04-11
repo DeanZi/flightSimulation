@@ -49,7 +49,7 @@ namespace FlightSimulator
                 {
                     byte[] msg = new byte[1024];     //the messages arrive as byte array
                     ns.Read(msg, 0, msg.Length);   //the same networkstream reads the message sent by the client
-                    Console.WriteLine(Encoding.Default.GetString(msg)); //now , we write the message as string
+                    Console.WriteLine(Encoding.Default.GetString(msg[0])); //now , we write the message as string
                 }
             }
 

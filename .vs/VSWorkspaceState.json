@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\FlightSimulator"
+    "\\FlightSimulator",
+    "\\FlightSimulator\\FlightSimulator",
+    "\\FlightSimulator\\FlightSimulator\\Model",
+    "\\FlightSimulator\\FlightSimulator\\ViewModels",
+    "\\FlightSimulator\\FlightSimulator\\Views"
   ],
+  "SelectedNode": "\\FlightSimulator\\FlightSimulator\\Views\\FlightBoard.xaml.cs",
   "PreviewInSolutionExplorer": false
 }

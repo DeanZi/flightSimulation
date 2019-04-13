@@ -13,7 +13,18 @@ namespace FlightSimulator.Model
     class Info
     {
         public double[] lanLon = new double[2];
-        public void MainServer()
+
+        bool started = false;
+        
+        public Info()
+        {
+            if (started == false) {
+                started = true;
+                MainServer();
+            }
+
+        }
+        private void MainServer()
         {
             TcpListener server = new TcpListener(IPAddress.Parse("127.0.0.1"), 5400);
             // set our IP address as server's address, and we also set the port: 9999

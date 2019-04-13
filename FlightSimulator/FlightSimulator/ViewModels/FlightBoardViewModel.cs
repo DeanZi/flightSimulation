@@ -9,13 +9,15 @@ namespace FlightSimulator.ViewModels
 {
     public class FlightBoardViewModel : BaseNotify
     {
-        Info flightInfoModel = new Info();
+        Info flightInfoModel;
         
+
+
         public void Connect()
         {
-            flightInfoModel.MainServer();
-           // this.NotifyPropertyChanged("Lat");
-            
+            flightInfoModel = new Info();
+
+
         }
 
         public double Lon
@@ -24,6 +26,12 @@ namespace FlightSimulator.ViewModels
             {
                 return flightInfoModel.lanLon[0];
             }
+
+            set
+            {
+                NotifyPropertyChanged("Lon");
+
+            }
         }
 
         public double Lat
@@ -31,6 +39,11 @@ namespace FlightSimulator.ViewModels
             get
             {
                 return flightInfoModel.lanLon[1];
+            }
+            set
+            {
+                NotifyPropertyChanged("Lon");
+
             }
         }
     }

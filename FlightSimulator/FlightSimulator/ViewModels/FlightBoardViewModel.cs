@@ -1,4 +1,4 @@
-﻿using FlightSimulator.Model.Interface;
+﻿using FlightSimulator.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +9,29 @@ namespace FlightSimulator.ViewModels
 {
     public class FlightBoardViewModel : BaseNotify
     {
+        Info flightInfoModel = new Info();
+        
+        public void Connect()
+        {
+            flightInfoModel.MainServer();
+           // this.NotifyPropertyChanged("Lat");
+            
+        }
 
         public double Lon
         {
-            get;
+            get
+            {
+                return flightInfoModel.lanLon[0];
+            }
         }
 
         public double Lat
         {
-            get;
+            get
+            {
+                return flightInfoModel.lanLon[1];
+            }
         }
     }
 }

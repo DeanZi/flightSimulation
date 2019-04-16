@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -30,11 +31,10 @@ namespace FlightSimulator.Views
 
         public FlightBoard()
         {
-            FlightBoardVModel.PropertyChanged += Vm_PropertyChanged;
             InitializeComponent();
             Task task2 = Task.Factory.StartNew(() => FlightBoardVModel.Connect());
-            // InitializeComponent();
-            //FlightBoardViewModel.Connect();
+            Thread.Sleep(5000);
+            FlightBoardVModel.PropertyChanged += Vm_PropertyChanged;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

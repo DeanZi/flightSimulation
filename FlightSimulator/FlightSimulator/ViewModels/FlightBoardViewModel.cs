@@ -3,21 +3,32 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace FlightSimulator.ViewModels
 {
     public class FlightBoardViewModel : BaseNotify
     {
-        Info flightInfoModel;
+        public Info flightInfoModel;
         
-
-
         public void Connect()
         {
-            flightInfoModel = new Info();
-
-
+            Task task2 = Task.Factory.StartNew(()=> flightInfoModel = new Info(false));
+            while (true)
+            {
+                if (flightInfoModel != null)
+                {
+                    if (flightInfoModel.flag)
+                    {
+                        Task task3 = Task.Factory.StartNew(() =>
+                        {
+                            Lon = flightInfoModel.lanLon[0];
+                            Lat = flightInfoModel.lanLon[1];
+                        });
+                    }
+                }
+            }
         }
 
         public double Lon
@@ -38,6 +49,7 @@ namespace FlightSimulator.ViewModels
         {
             get
             {
+               
                 return flightInfoModel.lanLon[1];
             }
             set

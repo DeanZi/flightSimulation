@@ -10,15 +10,15 @@ using System.Threading.Tasks;
 
 namespace FlightSimulator.Model
 {
-    class Info
+    public class Info
     {
+        public bool flag = false;
         public double[] lanLon = new double[2];
 
-        bool started = false;
-        
-        public Info()
+        public Info(bool started)
         {
-            if (started == false) {
+            if (started == false)
+            {
                 started = true;
                 MainServer();
             }
@@ -42,27 +42,32 @@ namespace FlightSimulator.Model
                 hello = Encoding.Default.GetBytes("hello world");  //conversion string => byte array
 
                 ns.Write(hello, 0, hello.Length);     //sending the message
-                int i = 0;
-                while (client.Connected)  //while the client is connected, we look for incoming messages
-                {
-                    byte[] msg = new byte[1024];     //the messages arrive as byte array
-                    ns.Read(msg, 0, msg.Length);   //the same networkstream reads the message sent by the client
-                    char[] charsToTrim = {' ', '?' };
-                    string phrase = Encoding.Default.GetString(msg).Trim(charsToTrim);
-                    Console.WriteLine(Encoding.Default.GetString(msg).Trim(charsToTrim)); //now , we write the message as string
-                    string[] details = phrase.Split(',');
 
-                    Update(/*Convert.ToDouble(details [0])*/i+22.0 , Convert.ToDouble(details[1]));
-                    i++;
-                }
+                connect(ns, client);
+
             }
-
         }
-        private void Update (double x, double  y)
 
+
+        private void connect(NetworkStream ns, TcpClient client)
         {
-            this.lanLon[0]=x;
+            while (client.Connected)  //while the client is connected, we look for incoming messages
+            {
+                byte[] msg = new byte[1024];     //the messages arrive as byte array
+                ns.Read(msg, 0, msg.Length);   //the same networkstream reads the message sent by the client
+                char[] charsToTrim = { ' ', '?' };
+                string phrase = Encoding.Default.GetString(msg).Trim(charsToTrim);
+                Console.WriteLine(Encoding.Default.GetString(msg).Trim(charsToTrim)); //now , we write the message as string
+                string[] details = phrase.Split(',');
+                Update(Convert.ToDouble(details[0]), Convert.ToDouble(details[1]));
+            }
+        }
+
+        private void Update(double x, double y)
+        {
+            this.lanLon[0] = x;
             this.lanLon[1] = y;
+            flag = true;
         }
     }
 }

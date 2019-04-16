@@ -10,15 +10,16 @@ namespace FlightSimulator.ViewModels
 {
     public class FlightBoardViewModel : BaseNotify
     {
-        public Info flightInfoModel;
+        public Info flightInfoModel=new Info(false);
         
         public void Connect()
         {
-            Task task2 = Task.Factory.StartNew(()=> flightInfoModel = new Info(false));
+            Task task2 = Task.Factory.StartNew(()=> flightInfoModel.MainServer());
             while (true)
             {
                 if (flightInfoModel != null)
                 {
+                    
                     if (flightInfoModel.flag)
                     {
                         Task task3 = Task.Factory.StartNew(() =>
@@ -30,30 +31,32 @@ namespace FlightSimulator.ViewModels
                 }
             }
         }
-
+        private double lon;
         public double Lon
         {
             get
             {
-                return flightInfoModel.lanLon[0];
+                return lon;
             }
 
             set
             {
+                lon = value;
                 NotifyPropertyChanged("Lon");
 
             }
         }
-
+        private double lat;
         public double Lat
         {
             get
             {
-               
-                return flightInfoModel.lanLon[1];
+
+                return lat;
             }
             set
             {
+                lat = value;
                 NotifyPropertyChanged("Lon");
 
             }

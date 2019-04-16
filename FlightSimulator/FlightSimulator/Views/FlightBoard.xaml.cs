@@ -32,6 +32,7 @@ namespace FlightSimulator.Views
         public FlightBoard()
         {
             InitializeComponent();
+            DataContext = FlightBoardVModel;
             Task task2 = Task.Factory.StartNew(() => FlightBoardVModel.Connect());
             Thread.Sleep(5000);
             FlightBoardVModel.PropertyChanged += Vm_PropertyChanged;

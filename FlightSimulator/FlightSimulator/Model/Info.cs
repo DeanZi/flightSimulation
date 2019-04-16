@@ -20,11 +20,11 @@ namespace FlightSimulator.Model
             if (started == false)
             {
                 started = true;
-                MainServer();
+               // MainServer();
             }
 
         }
-        private void MainServer()
+        public void MainServer()
         {
             TcpListener server = new TcpListener(IPAddress.Parse("127.0.0.1"), 5400);
             // set our IP address as server's address, and we also set the port: 9999
@@ -55,11 +55,13 @@ namespace FlightSimulator.Model
             {
                 byte[] msg = new byte[1024];     //the messages arrive as byte array
                 ns.Read(msg, 0, msg.Length);   //the same networkstream reads the message sent by the client
-                char[] charsToTrim = { ' ', '?' };
+                char[] charsToTrim = {' ', '?' };
+               // char[] charsToSplitBy = { ',', '\n' };
                 string phrase = Encoding.Default.GetString(msg).Trim(charsToTrim);
                 Console.WriteLine(Encoding.Default.GetString(msg).Trim(charsToTrim)); //now , we write the message as string
-                string[] details = phrase.Split(',');
-                Update(Convert.ToDouble(details[0]), Convert.ToDouble(details[1]));
+                string[] details = phrase.Split(',', '\n');
+                if (details[0] != "" && details[1] != "") 
+                    Update(Convert.ToDouble(details[0]), Convert.ToDouble(details[1]));
             }
         }
 

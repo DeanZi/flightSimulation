@@ -7,7 +7,7 @@
         xmlns:Views="clr-namespace:FlightSimulator.Views"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1000">
+        Title="MainWindow" Height="717" Width="1108">
     <DockPanel>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -15,7 +15,10 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <Views:FlightBoard></Views:FlightBoard>
+                <Views:FlightBoard Margin="27,0,0,90"  RenderTransformOrigin="0.539,0.557"></Views:FlightBoard>
+        </Grid>
+        <Grid Grid.Column="1">
+                <Views:Joystick Margin="10,75,-10,-75"></Views:Joystick>
         </Grid>
     </Grid>
     </DockPanel>

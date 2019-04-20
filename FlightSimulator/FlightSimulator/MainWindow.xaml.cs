@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulator.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
@@ -24,8 +25,10 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
+            //TcpClientSample newC = new TcpClientSample();
+            //newC.start();
         }
 
-     
+    
     }
 }

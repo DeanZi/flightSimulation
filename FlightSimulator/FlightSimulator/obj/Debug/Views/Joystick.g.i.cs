@@ -71,6 +71,14 @@ namespace FlightSimulator.Views {
         #line default
         #line hidden
         
+        
+        #line 170 "..\..\..\Views\Joystick.xaml"
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1823:AvoidUnusedPrivateFields")]
+        internal System.Windows.Controls.TextBox input;
+        
+        #line default
+        #line hidden
+        
         private bool _contentLoaded;
         
         /// <summary>
@@ -120,6 +128,9 @@ namespace FlightSimulator.Views {
             
             #line default
             #line hidden
+            return;
+            case 6:
+            this.input = ((System.Windows.Controls.TextBox)(target));
             return;
             }
             this._contentLoaded = true;

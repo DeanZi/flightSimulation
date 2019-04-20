@@ -5,15 +5,10 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
              xmlns:local="clr-namespace:FlightSimulator.Views"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
+             mc:Ignorable="d" Loaded="UserControl_Loaded" Height="483" Width="804.5">
     <DockPanel>
-        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
-            <Button Margin="155,10,424,18" Padding="10 10 10 10" Background="Bisque" Content="Connect"/>
-            <Button Margin="600,0,424,18" Padding="10 10 10 10" Background="Bisque" Content="Settings"/>
-
-        </WrapPanel>
-        <Grid>
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center"/>
+        <Grid Margin="0,-70,0,-138" Width="1123">
             <Grid.Resources>
                 <Style TargetType="{x:Type TextBlock}" x:Key="LabelStyle">
                     <Setter Property="FontSize" Value="20" />
@@ -26,15 +21,18 @@
             </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="241*"/>
+                <ColumnDefinition Width="321*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Style="{StaticResource LabelStyle}" LayoutTransform="{StaticResource rotate}" VerticalAlignment="Center" Grid.ColumnSpan="2" Margin="2,128,365,128" Height="26" Width="34"><Run Text="Lon"/></TextBlock>
-            <d3:ChartPlotter Grid.Row="0" Grid.Column="1" LegendVisible="False" x:Name="plotter" Grid.ColumnSpan="2" Margin="39,-69,34,10"/>
-            <TextBlock Grid.Row="1" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center" Grid.Column="2" Margin="167,5,204,4" Width="28"><Run Text="Lat"/></TextBlock>
+            <d3:ChartPlotter Grid.Row="0" LegendVisible="False" x:Name="plotter" Margin="68,61,74,0" Grid.ColumnSpan="2" Height="517" VerticalAlignment="Top"/>
+            <TextBlock Style="{StaticResource LabelStyle}" HorizontalAlignment="Center" Margin="407,596,209,31" Width="28"><Run Text="Lat"/></TextBlock>
+            <TextBlock Style="{StaticResource LabelStyle}" LayoutTransform="{StaticResource rotate}" VerticalAlignment="Center" Margin="25,302,585,327" Height="26" Width="34"><Run Text="Lon"/></TextBlock>
+            <Button Margin="394,10,164,635" Padding="10 10 10 10" Background="Bisque" Content="Connect"/>
+            <Button Margin="147,10,400,635" Padding="10 10 10 10" Background="Bisque" Content="Settings"/>
 
 
         </Grid>

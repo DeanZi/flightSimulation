@@ -105,7 +105,6 @@ C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\
 C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\Views\FlightBoard.g.cs
 C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\Views\Joystick.g.cs
 C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\App.g.cs
-C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\FlightSimulator_MarkupCompile.cache
 C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\FlightSimulator_MarkupCompile.lref
 C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\MainWindow.baml
@@ -118,3 +117,4 @@ C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\
 C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\FlightSimulator.exe
 C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\FlightSimulator.pdb
 C:\Users\Simo\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Dean\source\repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\GeneratedInternalTypeHelper.g.cs

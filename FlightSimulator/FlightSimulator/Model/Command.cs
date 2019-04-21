@@ -6,12 +6,17 @@ using System.Text;
 namespace FlightSimulator.Model
 { 
 
-public class TcpClientSample
+public class Command
 {
-    public void start()
+
+    public Command(string input)
+        {
+            start(input);
+        }
+    public void start(string input)
     {
         byte[] data = new byte[1024];
-        string input, stringData;
+       
         TcpClient server;
 
         try
@@ -31,8 +36,7 @@ public class TcpClientSample
 
         while (true)
         {
-            input = "set controls/flight/aileron -1";
-                if (input == "exit")
+            if (input == "exit")
                 break;
             string[] cmds = input.Split('\n');
             foreach (string cmd in cmds) {

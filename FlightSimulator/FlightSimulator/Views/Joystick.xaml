@@ -167,9 +167,9 @@
             </TabItem>
             <TabItem Header="Auto Pilot">
                 <Grid>
-                    <TextBox Name ="input" TextWrapping="Wrap" Margin="-2,0,0,85"/>
+                    <TextBox Name ="input" Text="{Binding Path=Input}" TextWrapping="Wrap" Margin="-2,0,0,85"/>
                     <Grid Margin="0,354,0,0">
-                        <Button Content="OK" Command="{Binding takeCommand}" HorizontalAlignment="Left" Margin="82,29,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Button Content="OK" Command="{Binding TakeCommand}" HorizontalAlignment="Left" Margin="82,29,0,0" VerticalAlignment="Top" Width="75"/>
                         <Button Content="Clear" HorizontalAlignment="Left" Margin="282,29,0,0" VerticalAlignment="Top" Width="75"/>
                     </Grid>
                 </Grid>

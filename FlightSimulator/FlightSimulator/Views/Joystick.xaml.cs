@@ -1,4 +1,5 @@
 ﻿using FlightSimulator.Model.EventArgs;
+using FlightSimulator.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -111,8 +112,9 @@ namespace FlightSimulator.Views
 
         public Joystick()
         {
+            AutoPilotVM vm= new AutoPilotVM();
             InitializeComponent();
-
+            DataContext = vm;
             Knob.MouseLeftButtonDown += Knob_MouseLeftButtonDown;
             Knob.MouseLeftButtonUp += Knob_MouseLeftButtonUp;
             Knob.MouseMove += Knob_MouseMove;

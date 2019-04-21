@@ -24,8 +24,12 @@ namespace FlightSimulator.ViewModels
                     {
                         Task task3 = Task.Factory.StartNew(() =>
                         {
-                            Lon = flightInfoModel.lanLon[0];
-                            Lat = flightInfoModel.lanLon[1];
+                            try
+                            {
+                                Lon = flightInfoModel.lanLon[0];
+                                Lat = flightInfoModel.lanLon[1];
+                            }
+                            catch(Exception e) { }
                         });
                     }
                 }

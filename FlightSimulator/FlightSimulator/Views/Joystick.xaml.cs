@@ -112,9 +112,11 @@ namespace FlightSimulator.Views
 
         public Joystick()
         {
-            AutoPilotVM vm= new AutoPilotVM();
             InitializeComponent();
-            DataContext = vm;
+            DataContext = new
+            {
+                vm = new AutoPilotVM()
+            };
             Knob.MouseLeftButtonDown += Knob_MouseLeftButtonDown;
             Knob.MouseLeftButtonUp += Knob_MouseLeftButtonUp;
             Knob.MouseMove += Knob_MouseMove;
@@ -161,6 +163,11 @@ namespace FlightSimulator.Views
             Moved?.Invoke(this, new VirtualJoystickEventArgs { Aileron = Aileron, Elevator = Elevator });
             _prevAileron = Aileron;
             _prevElevator = Elevator;
+
+        }
+
+        private void Input_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
 

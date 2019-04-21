@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModels
@@ -20,9 +21,22 @@ namespace FlightSimulator.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private string _input;
-        
 
+        private SolidColorBrush _bgcolor;
+        public SolidColorBrush BGColor
+        {
+            get
+            {
+                return _bgcolor;
+            }
+            set
+            {
+                _bgcolor = value;
+                OnPropertyChanged("BGColor");
+            }
+        }
+
+        private string _input;
 
         public string Input
         {

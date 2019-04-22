@@ -31,8 +31,8 @@
             <d3:ChartPlotter Grid.Row="0" LegendVisible="False" x:Name="plotter" Margin="68,61,74,0" Grid.ColumnSpan="2" Height="517" VerticalAlignment="Top"/>
             <TextBlock Style="{StaticResource LabelStyle}" HorizontalAlignment="Center" Margin="407,596,209,31" Width="28"><Run Text="Lat"/></TextBlock>
             <TextBlock Style="{StaticResource LabelStyle}" LayoutTransform="{StaticResource rotate}" VerticalAlignment="Center" Margin="25,302,585,327" Height="26" Width="34"><Run Text="Lon"/></TextBlock>
-            <Button Margin="394,10,164,635" Padding="10 10 10 10" Background="Bisque" Content="Connect"/>
-            <Button Margin="147,10,400,635" Padding="10 10 10 10" Background="Bisque" Content="Settings"/>
+            <Button Margin="394,10,164,635" Padding="10 10 10 10" Command="{Binding ConnectCommand}" Background="Bisque" Content="Connect"/>
+            <Button Margin="147,10,400,635" Padding="10 10 10 10" Command="{Binding SettingsCommand}" Background="Bisque" Content="Settings"/>
 
 
         </Grid>

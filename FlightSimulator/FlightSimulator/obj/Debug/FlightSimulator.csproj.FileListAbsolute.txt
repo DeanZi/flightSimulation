@@ -118,3 +118,5 @@ C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\
 C:\Users\Dean\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\FlightSimulator.pdb
 C:\Users\Simo\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Dean\source\repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Dean\source\repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\Views\Settings.g.cs
+C:\Users\Dean\source\repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\Views\Settings.baml

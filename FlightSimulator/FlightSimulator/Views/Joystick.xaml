@@ -167,10 +167,10 @@
             </TabItem>
             <TabItem Header="Auto Pilot">
                 <Grid>
-                    <TextBox Name ="input" Background ="{Binding BGColor, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Input,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Margin="-2,0,0,85" TextChanged="Input_TextChanged"/>
+                    <TextBox Name ="input" Background ="{Binding BGColor, UpdateSourceTrigger=PropertyChanged}" Text="{Binding Input,UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" Margin="-2,0,0,85" />
                     <Grid Margin="0,354,0,0">
-                        <Button Content="OK" Command="{Binding TakeCommand}" HorizontalAlignment="Left" Margin="82,29,0,0" VerticalAlignment="Top" Width="75"/>
-                        <Button Content="Clear" HorizontalAlignment="Left" Margin="282,29,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Button Command="{Binding OkCommand}" Content="OK" HorizontalAlignment="Left" Margin="82,29,0,0" VerticalAlignment="Top" Width="75"/>
+                        <Button Command="{Binding ClearCommand}" Content="Clear" HorizontalAlignment="Left" Margin="282,29,0,0" VerticalAlignment="Top" Width="75"/>
                     </Grid>
                 </Grid>
             </TabItem>

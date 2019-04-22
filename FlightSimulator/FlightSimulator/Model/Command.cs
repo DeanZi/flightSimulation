@@ -9,11 +9,11 @@ namespace FlightSimulator.Model
 public class Command
 {
 
-    public Command(string input)
+    public Command(string input, string flightServerIP, int flightCommandPort)
         {
-            start(input);
+            start(input, flightServerIP, flightCommandPort);
         }
-    public void start(string input)
+    public void start(string input, string flightServerIP, int flightCommandPort)
     {
         byte[] data = new byte[1024];
        
@@ -21,7 +21,7 @@ public class Command
 
         try
         {
-            server = new TcpClient("127.0.0.1", 5402);
+            server = new TcpClient(flightServerIP, flightCommandPort);
         }
         catch (SocketException)
         {
@@ -34,10 +34,10 @@ public class Command
         stringData = Encoding.ASCII.GetString(data, 0, recv);
         Console.WriteLine(stringData);*/
 
-        while (true)
-        {
-            if (input == "exit")
-                break;
+       // while (true)
+        //{
+            //if (input == "exit")
+              //  break;
             string[] cmds = input.Split('\n');
             foreach (string cmd in cmds) {
                     string tmpCmd = cmd + "\r\n";
@@ -49,8 +49,8 @@ public class Command
             recv = ns.Read(data, 0, data.Length);
             stringData = Encoding.ASCII.GetString(data, 0, recv);
             Console.WriteLine(stringData);*/
-        }
-        Console.WriteLine("Disconnecting from server...");
+        //}
+        //Console.WriteLine("Disconnecting from server...");
         ns.Close();
         server.Close();
     }

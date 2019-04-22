@@ -12,6 +12,7 @@ namespace FlightSimulator.Model
 {
     public class Info
     {
+
         public bool flag = false;
         public double[] lanLon = new double[2];
 
@@ -19,19 +20,20 @@ namespace FlightSimulator.Model
         {
             if (started == false)
             {
-                started = true;
+                flag = true;
                // MainServer();
             }
 
         }
-        public void MainServer()
+        public void MainServer(string input, string flightServerIP, int FlightInfoPort)
         {
-            TcpListener server = new TcpListener(IPAddress.Parse("127.0.0.1"), 5400);
+            TcpListener server = new TcpListener(IPAddress.Parse(flightServerIP), FlightInfoPort);
             // set our IP address as server's address, and we also set the port: 9999
-
-            server.Start();  // start the server
-
-            while (true)   //wait for a connection
+            if(input=="start")
+                server.Start();  // start the server
+            if (input == "stop")
+                server.Stop();
+            while (true && input== "start")   //wait for a connection
             {
                 TcpClient client = server.AcceptTcpClient();  //if a connection exists, the server will accept it
                 Console.WriteLine("1 connected"); //now , we write the message as string

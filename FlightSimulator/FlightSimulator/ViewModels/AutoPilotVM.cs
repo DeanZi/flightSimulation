@@ -9,21 +9,21 @@ using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModels
 {
-    class AutoPilotVM
+    class AutoPilotVM : INotifyPropertyChanged
     {
 
 
         public event PropertyChangedEventHandler PropertyChanged;
 
 
-        protected void OnPropertyChanged(string propertyName)
+        protected void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
 
-        private SolidColorBrush _bgcolor;
-        public SolidColorBrush BGColor
+        private Brush _bgcolor= Brushes.White;
+        public Brush BGColor
         {
             get
             {
@@ -32,7 +32,7 @@ namespace FlightSimulator.ViewModels
             set
             {
                 _bgcolor = value;
-                OnPropertyChanged("BGColor");
+                NotifyPropertyChanged("BGColor");
             }
         }
 
@@ -43,20 +43,53 @@ namespace FlightSimulator.ViewModels
             get { return _input; }
             set
             {
-                if (value != _input)
                 {
                     _input = value;
-                    OnPropertyChanged("Input");
+                    if (string.IsNullOrEmpty(Input))
+                        BGColor = Brushes.White;
+                    else BGColor = Brushes.LightPink;
+
                 }
             }
         }
         private Command cmd;
-       
-        
-        public void TakeCommand()
+
+        private CommandHandler _okCommand;
+        public CommandHandler OkCommand
         {
-            cmd = new Command(_input);
+            get
+            {
+                return _okCommand ?? (_okCommand = new CommandHandler(() => OkAction()));
+            }
+        }
+        public void OkAction()
+        {
+            string currentCommand = Input;
+            Input = "";
+            BGColor = Brushes.White;
+            NotifyPropertyChanged(Input);
+            cmd = new Command(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+
         }
 
+
+
+        private CommandHandler _clearCommand;
+        public CommandHandler ClearCommand
+        {
+            get
+            {
+                return _clearCommand ?? (_clearCommand = new CommandHandler(() => ClearAction()));
+            }
+        }
+
+        private void ClearAction()
+        {
+            Input = "";
+            BGColor = Brushes.White;
+            NotifyPropertyChanged(Input);
+        }
     }
+
+
 }

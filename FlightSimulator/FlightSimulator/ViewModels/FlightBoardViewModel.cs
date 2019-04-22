@@ -48,7 +48,7 @@ namespace FlightSimulator.ViewModels
             flightInfoModel = new Info(false);
             if (flightInfoModel.flag)
             {
-                flightInfoModel.MainServer("stop", "0", "0");
+                flightInfoModel.MainServer("stop", "0", 0);
                 Task task2 = Task.Factory.StartNew(() => flightInfoModel.MainServer("start", ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightInfoPort));
                 Task task3 = Task.Factory.StartNew(() => Update());
             }

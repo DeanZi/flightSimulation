@@ -11,8 +11,6 @@ namespace FlightSimulator.ViewModels
 {
     class AutoPilotVM : INotifyPropertyChanged
     {
-
-
         public event PropertyChangedEventHandler PropertyChanged;
 
 

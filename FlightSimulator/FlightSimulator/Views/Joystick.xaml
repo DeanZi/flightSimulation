@@ -176,8 +176,8 @@
                             <TextBlock FontWeight="Bold" Text="← aileron →" HorizontalAlignment="Center" Canvas.Left="139" Canvas.Top="-46"/>
                             <TextBlock Text ="{Binding ElementName=throttle_slider,
                                 UpdateSourceTrigger=PropertyChanged, Path=Value, StringFormat={}{0:0.0}}" FontWeight="Bold" Canvas.Left="-31"/>
-                            <TextBlock Text ="{Binding ElementName=throttle_slider,
-                                UpdateSourceTrigger=PropertyChanged, Path=Value, StringFormat={}{0:0.00}}" FontWeight="Bold" Canvas.Left="378" Canvas.Top="-26" RenderTransformOrigin="0.5,0.5">
+                            <TextBlock Text ="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Elevator,
+                                UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:0.00}}" FontWeight="Bold" Canvas.Left="378" Canvas.Top="-26" RenderTransformOrigin="0.5,0.5">
                                 <TextBlock.RenderTransform>
                                     <TransformGroup>
                                         <ScaleTransform/>
@@ -187,8 +187,8 @@
                                     </TransformGroup>
                                 </TextBlock.RenderTransform>
                             </TextBlock>
-                            <TextBlock Text ="{Binding ElementName=throttle_slider,
-                                UpdateSourceTrigger=PropertyChanged, Path=Value, StringFormat={}{0:0.00}}" FontWeight="Bold" Canvas.Left="340" Canvas.Top="-43"/>
+                            <TextBlock Text ="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=Aileron,
+                                UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:0.00}}" FontWeight="Bold" Canvas.Left="340" Canvas.Top="-43"/>
                             <TextBlock Text ="{Binding ElementName=rudder_slider, UpdateSourceTrigger=PropertyChanged, Path=Value, StringFormat={}{0:0.0}}" FontWeight="Bold" Canvas.Left="322" Canvas.Top="356"/>
                             <TextBlock FontWeight="Bold" Text="← elevator →" HorizontalAlignment="Center" Canvas.Left="357" Canvas.Top="162" RenderTransformOrigin="0.5,0.5">
                                 <TextBlock.RenderTransform>

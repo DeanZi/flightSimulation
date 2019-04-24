@@ -112,9 +112,10 @@ namespace FlightSimulator.Views
 
         public Joystick()
         {
-            AutoPilotVM vm;
+            AutoPilotVM autoPilotVM;
+            ManualVM manualVM;
             InitializeComponent();
-            DataContext = vm = new AutoPilotVM();
+            DataContext = manualVM = new ManualVM() ;
             Knob.MouseLeftButtonDown += Knob_MouseLeftButtonDown;
             Knob.MouseLeftButtonUp += Knob_MouseLeftButtonUp;
             Knob.MouseMove += Knob_MouseMove;

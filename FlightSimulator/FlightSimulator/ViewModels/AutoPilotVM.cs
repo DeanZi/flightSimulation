@@ -70,8 +70,6 @@ namespace FlightSimulator.ViewModels
 
         }
 
-
-
         private CommandHandler _clearCommand;
         public CommandHandler ClearCommand
         {

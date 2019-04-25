@@ -8,19 +8,13 @@ namespace FlightSimulator.Model
 
 public class Command
 {
-        TcpClient server;
+        public TcpClient server;
 
 
-        public Command(string input, string flightServerIP, int flightCommandPort)
+        public Command( string flightServerIP, int flightCommandPort)
+
         {
-            start(input, flightServerIP, flightCommandPort);
-        }
-    public void start(string input, string flightServerIP, int flightCommandPort)
-    {
-        byte[] data = new byte[1024];
-
-            //  TcpClient server;
-            if (server==null||!server.Connected)
+            if (server == null || !server.Connected)
             {
                 try
                 {
@@ -32,31 +26,43 @@ public class Command
                     return;
                 }
             }
-        NetworkStream ns = server.GetStream();
+           // start(input, flightServerIP, flightCommandPort);
+        }
 
-       /* int recv = ns.Read(data, 0, data.Length);
-        stringData = Encoding.ASCII.GetString(data, 0, recv);
-        Console.WriteLine(stringData);*/
 
-       // while (true)
-        //{
-            //if (input == "exit")
-              //  break;
-            string[] cmds = input.Split('\n');
-            foreach (string cmd in cmds) {
+    public void start(string input)
+    {
+        byte[] data = new byte[1024];
+        NetworkStream ns;
+            if (server != null)
+            {
+                ns = server.GetStream();
+
+                /* int recv = ns.Read(data, 0, data.Length);
+                 stringData = Encoding.ASCII.GetString(data, 0, recv);
+                 Console.WriteLine(stringData);*/
+
+                // while (true)
+                //{
+                //if (input == "exit")
+                //  break;
+                string[] cmds = input.Split('\n');
+                foreach (string cmd in cmds)
+                {
                     string tmpCmd = cmd + "\r\n";
                     ns.Write(Encoding.ASCII.GetBytes(tmpCmd), 0, tmpCmd.Length);
                     ns.Flush();
-            }
+                }
 
-         /*   data = new byte[1024];
-            recv = ns.Read(data, 0, data.Length);
-            stringData = Encoding.ASCII.GetString(data, 0, recv);
-            Console.WriteLine(stringData);*/
-        //}
-        //Console.WriteLine("Disconnecting from server...");
-        ns.Close();
-        //server.Close();
+                /*   data = new byte[1024];
+                   recv = ns.Read(data, 0, data.Length);
+                   stringData = Encoding.ASCII.GetString(data, 0, recv);
+                   Console.WriteLine(stringData);*/
+                //}
+                //Console.WriteLine("Disconnecting from server...");
+                ns.Close();
+                //server.Close();
+            }
     }
 }
 }

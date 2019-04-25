@@ -112,9 +112,7 @@ namespace FlightSimulator.Views
 
         public Joystick()
         {
-            AutoPilotVM vm;
             InitializeComponent();
-            DataContext = vm = new AutoPilotVM();
             Knob.MouseLeftButtonDown += Knob_MouseLeftButtonDown;
             Knob.MouseLeftButtonUp += Knob_MouseLeftButtonUp;
             Knob.MouseMove += Knob_MouseMove;
@@ -148,8 +146,8 @@ namespace FlightSimulator.Views
             double distance = Math.Round(Math.Sqrt(deltaPos.X * deltaPos.X + deltaPos.Y * deltaPos.Y));
             if (distance >= canvasWidth / 2 || distance >= canvasHeight / 2)
                 return;
-            Aileron = -deltaPos.Y;
-            Elevator = deltaPos.X;
+            Aileron = Math.Round(-deltaPos.Y / 124, 2);
+            Elevator = Math.Round(deltaPos.X / 124, 2);
 
             knobPosition.X = deltaPos.X;
             knobPosition.Y = deltaPos.Y;

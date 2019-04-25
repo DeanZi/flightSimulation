@@ -9,11 +9,61 @@ using FlightSimulator.Model;
 
 namespace FlightSimulator.ViewModels
 {
-    class AutoPilotVM : INotifyPropertyChanged
+    class PilotVM : INotifyPropertyChanged
     {
 
+        private string throttle;
+        public double Throttle
+        {
+            set
+            {
+                throttle = "set /controls/engines/current-engine/throttle " + Convert.ToString(value);
+                NotifyPropertyChanged("Throttle");
+                ManualAction(throttle);
+            }
+        }
+
+        private string aileron;
+        public double Aileron
+        {
+            set
+            {
+                aileron = "set /controls/flight/aileron " + Convert.ToString(value);
+                NotifyPropertyChanged("Aileron");
+                ManualAction(aileron);
+            }
+        }
+
+        private string rudder;
+        public double Rudder
+        {
+            set
+            {
+                rudder = "set /controls/flight/rudder " + Convert.ToString(value);
+                NotifyPropertyChanged("Rudder");
+                ManualAction(rudder);
+            }
+        }
+
+        private string elevator;
+        public double Elevator
+        {
+            set
+            {
+                elevator = "set /controls/flight/elevator " + Convert.ToString(value);
+                NotifyPropertyChanged("Elevator");
+                ManualAction(elevator);
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public void ManualAction(string setting)
+        {
+            string currentCommand = setting;
+            NotifyPropertyChanged(currentCommand);
+            cmd = new Command(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+        }
 
 
         protected void NotifyPropertyChanged(string propertyName)
@@ -71,8 +121,6 @@ namespace FlightSimulator.ViewModels
             cmd = new Command(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
 
         }
-
-
 
         private CommandHandler _clearCommand;
         public CommandHandler ClearCommand

@@ -29,7 +29,7 @@ namespace FlightSimulator.ViewModels
             if (settingsWindow.IsLoaded)
                 return;
             settingsWindow.Show();
-                
+
         }
 
         private CommandHandler _connectCommand;
@@ -40,7 +40,7 @@ namespace FlightSimulator.ViewModels
                 return _connectCommand ?? (_connectCommand = new CommandHandler(() => Connect()));
             }
         }
-       // Task task2 = Task.Factory.StartNew(() => FlightBoardVModel.Connect());
+        // Task task2 = Task.Factory.StartNew(() => FlightBoardVModel.Connect());
 
 
         public void Connect()
@@ -53,7 +53,7 @@ namespace FlightSimulator.ViewModels
                 Task task3 = Task.Factory.StartNew(() => Update());
             }
 
-            
+
         }
 
         public void Update()
@@ -65,19 +65,19 @@ namespace FlightSimulator.ViewModels
 
                     if (flightInfoModel.flag)
                     {
-                       
-                        
-                            try
-                            {
-                                Lon = flightInfoModel.lanLon[0];
-                                Lat = flightInfoModel.lanLon[1];
-                            }
-                            catch (Exception e) { }
+
+
+                        try
+                        {
+                            Lon = flightInfoModel.lanLon[0];
+                            Lat = flightInfoModel.lanLon[1];
+                        }
+                        catch (Exception e) { }
                     }
                 }
             }
-         }
-        
+        }
+
 
         private double lon;
         public double Lon

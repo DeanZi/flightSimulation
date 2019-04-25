@@ -6,16 +6,16 @@
         xmlns:local="clr-namespace:FlightSimulator.Views"
         mc:Ignorable="d"
         Height="457.107" Width="488.947">
-    <Grid>
+    <Grid Margin="0,0,10,10">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="83*"/>
-            <ColumnDefinition Width="717*"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <TabControl HorizontalAlignment="Left" Height="467" Margin="0,-17,0,0" VerticalAlignment="Top" Width="482" Grid.ColumnSpan="2">
+        <TabControl HorizontalAlignment="Left" Height="467" Margin="0,-17,0,0" VerticalAlignment="Top" Width="482">
             <TabItem Header="Manual">
-                <Border Background="White" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="439" VerticalAlignment="Top" Width="476">
+                <Border Background="White" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="444" VerticalAlignment="Top" Width="480" Margin="0,-5,-4,0">
                     <Grid>
-                        <Slider Orientation="Vertical" Value="{Binding Throttle, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Name="throttle_slider" TickFrequency="0.1" TickPlacement="BottomRight" Margin="30,50,0,81" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="267" Maximum="1" Minimum="-1">
+                        <Slider Orientation="Vertical" Value="{Binding Throttle, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Name="throttle_slider" TickFrequency="0.1" TickPlacement="BottomRight" Margin="30,50,0,81" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="28" Maximum="1" Minimum="-1">
                             <Slider.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1"/>
@@ -25,7 +25,7 @@
                                 </TransformGroup>
                             </Slider.RenderTransform>
                         </Slider>
-                        <Slider Name="rudder_slider" Value="{Binding Rudder, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Maximum="1" TickFrequency="0.1" TickPlacement="TopLeft" Margin="96,389,100,13" RenderTransformOrigin="0.5,0.5" Minimum="-1">
+                        <Slider Name="rudder_slider" Value="{Binding Rudder, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Maximum="1" TickFrequency="0.1" TickPlacement="TopLeft" Margin="96,396,100,13" RenderTransformOrigin="0.5,0.5" Minimum="-1">
                             <Slider.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="-1"/>
@@ -48,10 +48,18 @@
                             </TextBlock>
                         </StackPanel>
                         <TextBlock FontWeight="Bold" Text="← aileron →" HorizontalAlignment="Center" Canvas.Left="139" Canvas.Top="-46" Margin="204,0,204,410"/>
-                        <TextBlock FontWeight="Bold" Text="← elevator →" HorizontalAlignment="Center" Canvas.Left="357" Canvas.Top="162" RenderTransformOrigin="0.5,0.5" Margin="398,197,3,197"/>
+                        <TextBlock FontWeight="Bold" Text="← elevator →" HorizontalAlignment="Center" Canvas.Left="357" Canvas.Top="162" RenderTransformOrigin="0.5,0.5" Margin="424,209,-19,209" Width="69">
+                            <TextBlock.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
                         <TextBlock Name="aileron_value" Text ="{Binding Aileron,
                                 UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:0.00}, Mode=OneWayToSource}" FontWeight="Bold" Margin="406,0,24,410" />
-
                         <StackPanel HorizontalAlignment="Left" Height="46" Margin="101,381,0,0" VerticalAlignment="Top" Width="271">
                             <TextBlock Text ="{Binding Value, ElementName=rudder_slider, StringFormat=\{0:0.0\}, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Height="32" Margin="0,0,229,0"/>
                             <TextBlock FontWeight="Bold" Text="← rudder →" Margin="105,0,68,0" RenderTransformOrigin="0.5,0.5">
@@ -65,12 +73,8 @@
                             </TextBlock>
                         </StackPanel>
                         <StackPanel>
-                            <TextBlock Text ="{Binding Value, ElementName=throttle_slider, StringFormat=\{0:0.0\}, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Canvas.Left="-31" Margin="0,32,397,81"/>
+                            <TextBlock Text ="{Binding Value, ElementName=throttle_slider, StringFormat=\{0:0.0\}, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold" Canvas.Left="-31" Margin="0,32,430,81"/>
                         </StackPanel>
-                        <Viewbox Margin="82,29,73,39">
-                            <local:Joystick Aileron="{Binding ElementName=aileron_value, Mode=OneWayToSource, Path=Text}"
-                            Elevator="{Binding ElementName=elevator_value, Mode=OneWayToSource, Path=Text}" Height="349" Width="358"/>
-                        </Viewbox>
                         <TextBlock Name="elevator_value" Text ="{Binding Elevator, StringFormat=\{0:0.00\}, UpdateSourceTrigger=PropertyChanged, Mode=OneWayToSource}" FontWeight="Bold" Margin="418,36,20,379" RenderTransformOrigin="1.387,0.787" >
                             <TextBlock.RenderTransform>
                                 <TransformGroup>
@@ -81,6 +85,10 @@
                                 </TransformGroup>
                             </TextBlock.RenderTransform>
                         </TextBlock>
+                        <Viewbox Margin="82,32,73,61">
+                            <local:Joystick Aileron="{Binding Text, ElementName=aileron_value, Mode=OneWayToSource}"
+                            Elevator="{Binding Text, ElementName=elevator_value, Mode=OneWayToSource}" Height="349" Width="358"/>
+                        </Viewbox>
                     </Grid>
                 </Border>
             </TabItem>

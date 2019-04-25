@@ -123,4 +123,3 @@ C:\Users\Simo\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\
 C:\Users\Simo\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\FlightSimulator.pdb
 C:\Users\Simo\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\Views\Pilot.g.cs
 C:\Users\Simo\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\Views\Pilot.baml
-C:\Users\Simo\Source\Repos\flightSimulation\FlightSimulator\FlightSimulator\obj\Debug\FlightSimulator.csprojAssemblyReference.cache

@@ -20,7 +20,7 @@ public class Command
         byte[] data = new byte[1024];
 
             //  TcpClient server;
-            if (!server.Connected)
+            if (server==null||!server.Connected)
             {
                 try
                 {

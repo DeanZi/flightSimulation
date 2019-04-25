@@ -14,7 +14,7 @@
         <TabControl HorizontalAlignment="Left" Height="467" Margin="0,-17,0,0" VerticalAlignment="Top" Width="482" Grid.ColumnSpan="2">
             <TabItem Header="Manual">
                 <Border Background="White" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="439" VerticalAlignment="Top" Width="476">
-                    <Grid>
+                    <DockPanel>
                         <Slider Orientation="Vertical" Value="{Binding Throttle, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Name="throttle_slider" TickFrequency="0.1" TickPlacement="BottomRight" Margin="30,50,0,81" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Left" Width="267" Maximum="1" Minimum="-1">
                             <Slider.RenderTransform>
                                 <TransformGroup>
@@ -81,7 +81,7 @@
                                 </TransformGroup>
                             </TextBlock.RenderTransform>
                         </TextBlock>
-                    </Grid>
+                    </DockPanel>
                 </Border>
             </TabItem>
             <TabItem Header="Auto Pilot">

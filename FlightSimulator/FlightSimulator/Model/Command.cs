@@ -8,13 +8,30 @@ namespace FlightSimulator.Model
 
 public class Command
 {
-        public TcpClient server;
+        private TcpClient server;
+        private static string flightServerIP;
+        private static int flightCommandPort;
 
 
-        public Command( string flightServerIP, int flightCommandPort)
+        private static Command c_Instance = null;
+        public static Command Instance
+        {
+            get
+            {
+                if (c_Instance == null)
+                {
+                    c_Instance = new Command();
+                    flightServerIP = ApplicationSettingsModel.Instance.FlightServerIP;
+                    flightCommandPort = ApplicationSettingsModel.Instance.FlightInfoPort;
+                }
+                return c_Instance;
+            }
+        }
+
+        public void Connect( )
 
         {
-            if (server == null || !server.Connected)
+            while (server == null || !server.Connected)
             {
                 try
                 {
@@ -23,7 +40,6 @@ public class Command
                 catch (SocketException)
                 {
                     Console.WriteLine("Unable to connect to server");
-                    return;
                 }
             }
            // start(input, flightServerIP, flightCommandPort);

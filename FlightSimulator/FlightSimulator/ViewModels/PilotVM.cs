@@ -11,8 +11,8 @@ namespace FlightSimulator.ViewModels
 {
     class PilotVM : INotifyPropertyChanged
     {
-        private Command cmd= new Command( ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
-
+       // private Command cmd= new Command( ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+        
         private string throttle;
         public double Throttle
         {
@@ -63,8 +63,8 @@ namespace FlightSimulator.ViewModels
         {
             string currentCommand = setting;
             NotifyPropertyChanged(currentCommand);
-            if (cmd != null)
-                new Task(delegate () { cmd.start(setting); }).Start();
+            if (Command.Instance != null)
+                new Task(delegate () { Command.Instance.start(setting); }).Start();
                 
         }
 
@@ -120,8 +120,8 @@ namespace FlightSimulator.ViewModels
             Input = "";
             BGColor = Brushes.White;
             NotifyPropertyChanged(Input);
-            if (cmd != null)
-                new Task(delegate () { cmd.start(currentCommand); }).Start();
+            if (Command.Instance != null)
+                new Task(delegate () { Command.Instance.start(currentCommand); }).Start();
 
         }
 

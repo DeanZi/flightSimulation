@@ -7,42 +7,19 @@
         xmlns:Views="clr-namespace:FlightSimulator.Views"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="661" Width="1526">
-    <DockPanel Margin="0,0,-5,-74.5">
-        <Grid Margin="0,0,0,31" Width="1402">
+        Title="MainWindow" Height="569" Width="1350">
+    <DockPanel Margin="0,0,-5,-81.5">
+        <Grid Margin="0,0,0,10" Width="1326" RenderTransformOrigin="0.52,0.501">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="-42,0,611,10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="19*"/>
-                    <ColumnDefinition Width="435*"/>
-                    <ColumnDefinition Width="274*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="229*"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Views:FlightBoard Margin="-88,53,-35,50.5"   Height="Auto" Grid.ColumnSpan="3">
-                    <Views:FlightBoard.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform/>
+            <Grid Grid.Column="0">
 
-                        </TransformGroup>
-                    </Views:FlightBoard.RenderTransform>
-                </Views:FlightBoard>
+                <Views:FlightBoard></Views:FlightBoard>
             </Grid>
-            <Grid Grid.Column="1" Margin="49,-37,-57,-254" RenderTransformOrigin="0.5,0.5">
-                <Grid.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.013"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Grid.RenderTransform>
-                <Views:Joystick Margin="9,63,-36.5,300.5"></Views:Joystick>
+            <Grid Grid.Column="1" Margin="0,0,0,35">
+                <Views:Pilot Margin="32,54,0,44"/>
             </Grid>
         </Grid>
     </DockPanel>

@@ -44,7 +44,6 @@ namespace FlightSimulator.Model
                 hello = Encoding.Default.GetBytes("hello world");  //conversion string => byte array
 
                 ns.Write(hello, 0, hello.Length);     //sending the message
-
                 connect(ns, client);
 
             }

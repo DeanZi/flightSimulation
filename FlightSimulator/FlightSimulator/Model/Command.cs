@@ -11,7 +11,7 @@ public class Command
         private TcpClient server;
         private static string flightServerIP;
         private static int flightCommandPort;
-
+        public Boolean connected = false;
 
         private static Command c_Instance = null;
         public static Command Instance
@@ -22,7 +22,8 @@ public class Command
                 {
                     c_Instance = new Command();
                     flightServerIP = ApplicationSettingsModel.Instance.FlightServerIP;
-                    flightCommandPort = ApplicationSettingsModel.Instance.FlightInfoPort;
+                    flightCommandPort = ApplicationSettingsModel.Instance.FlightCommandPort;
+                  
                 }
                 return c_Instance;
             }
@@ -35,14 +36,15 @@ public class Command
             {
                 try
                 {
-                    server = new TcpClient(flightServerIP, flightCommandPort);
+                    //if(flightServerIP!=null)
+                        server = new TcpClient(flightServerIP, flightCommandPort);
                 }
                 catch (SocketException)
                 {
                     Console.WriteLine("Unable to connect to server");
                 }
             }
-           // start(input, flightServerIP, flightCommandPort);
+            connected = true;
         }
 
 
@@ -50,7 +52,7 @@ public class Command
     {
         byte[] data = new byte[1024];
         NetworkStream ns;
-            if (server != null)
+            if (server != null && server.Connected)
             {
                 ns = server.GetStream();
 

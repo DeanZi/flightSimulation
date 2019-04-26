@@ -63,7 +63,7 @@ namespace FlightSimulator.ViewModels
         {
             string currentCommand = setting;
             NotifyPropertyChanged(currentCommand);
-            if (Command.Instance != null)
+            if (Command.Instance.connected)
                 new Task(delegate () { Command.Instance.start(setting); }).Start();
                 
         }

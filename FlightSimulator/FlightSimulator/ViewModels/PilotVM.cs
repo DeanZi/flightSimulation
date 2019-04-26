@@ -3,16 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using FlightSimulator.Model;
+using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.ViewModels
 {
     class PilotVM : INotifyPropertyChanged
     {
-       // private Command cmd= new Command( ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
-        
+
         private string throttle;
         public double Throttle
         {
@@ -63,9 +64,11 @@ namespace FlightSimulator.ViewModels
         {
             string currentCommand = setting;
             NotifyPropertyChanged(currentCommand);
-            if (Command.Instance.connected)
-                new Task(delegate () { Command.Instance.start(setting); }).Start();
-                
+            new Thread(delegate ()
+            {
+                Command.Instance.Start(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+            }).Start();
+            
         }
 
 
@@ -105,6 +108,7 @@ namespace FlightSimulator.ViewModels
                 }
             }
         }
+        private Command cmd;
 
         private CommandHandler _okCommand;
         public CommandHandler OkCommand
@@ -120,8 +124,10 @@ namespace FlightSimulator.ViewModels
             Input = "";
             BGColor = Brushes.White;
             NotifyPropertyChanged(Input);
-            if (Command.Instance != null)
-                new Task(delegate () { Command.Instance.start(currentCommand); }).Start();
+            new Thread(delegate ()
+            {
+                Command.Instance.Start(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+            }).Start();
 
         }
 

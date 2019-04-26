@@ -7,7 +7,7 @@
         xmlns:Views="clr-namespace:FlightSimulator.Views"
 
         mc:Ignorable="d"
-        Title="MainWindow" Height="569" Width="1350">
+        Title="MainWindow" Height="776" Width="1350">
     <DockPanel Margin="0,0,-5,-81.5">
         <Grid Margin="0,0,0,10" Width="1326" RenderTransformOrigin="0.52,0.501">
             <Grid.ColumnDefinitions>

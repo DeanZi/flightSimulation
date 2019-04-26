@@ -1,87 +1,72 @@
 ﻿using System;
-using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Windows.Input;
 
-namespace FlightSimulator.Model
+namespace FlightSimulator.Model.Interface
 { 
 
-public class Command
-{
-        private TcpClient server;
-        private static string flightServerIP;
-        private static int flightCommandPort;
-        public Boolean connected = false;
+public class Command: ICommandModel
+    {
 
-        private static Command c_Instance = null;
-        public static Command Instance
+        private static ICommandModel c_Instance = null;
+        public static ICommandModel Instance
         {
             get
             {
                 if (c_Instance == null)
                 {
-                    c_Instance = new Command();
-                    flightServerIP = ApplicationSettingsModel.Instance.FlightServerIP;
-                    flightCommandPort = ApplicationSettingsModel.Instance.FlightCommandPort;
-                  
+                    c_Instance = new Command("set /controls/flight/elevator 0", ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
                 }
                 return c_Instance;
             }
         }
 
-        public void Connect( )
-
+        public Command(string input, string flightServerIP, int flightCommandPort)
         {
-            while (server == null || !server.Connected)
-            {
-                try
-                {
-                    //if(flightServerIP!=null)
-                        server = new TcpClient(flightServerIP, flightCommandPort);
-                }
-                catch (SocketException)
-                {
-                    Console.WriteLine("Unable to connect to server");
-                }
-            }
-            connected = true;
+            Start(input, flightServerIP, flightCommandPort);
         }
-
-
-    public void start(string input)
+    public void Start(string input, string flightServerIP, int flightCommandPort)
     {
         byte[] data = new byte[1024];
-            BinaryWriter bw;
-            if (server != null && server.Connected)
-            {
-                bw =new BinaryWriter( server.GetStream());
+       
+        TcpClient server;
 
-                /* int recv = ns.Read(data, 0, data.Length);
-                 stringData = Encoding.ASCII.GetString(data, 0, recv);
-                 Console.WriteLine(stringData);*/
+        try
+        {
+            server = new TcpClient(flightServerIP, flightCommandPort);
+        }
+        catch (SocketException)
+        {
+            Console.WriteLine("Unable to connect to server");
+            return;
+        }
+        NetworkStream ns = server.GetStream();
 
-                // while (true)
-                //{
-                //if (input == "exit")
-                //  break;
-                string[] cmds = input.Split('\n');
-                foreach (string cmd in cmds)
-                {
+       /* int recv = ns.Read(data, 0, data.Length);
+        stringData = Encoding.ASCII.GetString(data, 0, recv);
+        Console.WriteLine(stringData);*/
+
+       // while (true)
+        //{
+            //if (input == "exit")
+              //  break;
+            string[] cmds = input.Split('\n');
+            foreach (string cmd in cmds) {
                     string tmpCmd = cmd + "\r\n";
-                    bw.Write(Encoding.ASCII.GetBytes(tmpCmd), 0, tmpCmd.Length);
-                    bw.Flush();
-                }
-
-                /*   data = new byte[1024];
-                   recv = ns.Read(data, 0, data.Length);
-                   stringData = Encoding.ASCII.GetString(data, 0, recv);
-                   Console.WriteLine(stringData);*/
-                //}
-                //Console.WriteLine("Disconnecting from server...");
-                bw.Close();
-                //server.Close();
+                    ns.Write(Encoding.ASCII.GetBytes(tmpCmd), 0, tmpCmd.Length);
+                    ns.Flush();
             }
+
+         /*   data = new byte[1024];
+            recv = ns.Read(data, 0, data.Length);
+            stringData = Encoding.ASCII.GetString(data, 0, recv);
+            Console.WriteLine(stringData);*/
+        //}
+        //Console.WriteLine("Disconnecting from server...");
+        ns.Close();
+        server.Close();
     }
 }
 }

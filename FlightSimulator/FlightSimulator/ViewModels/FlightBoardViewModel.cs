@@ -40,6 +40,7 @@ namespace FlightSimulator.ViewModels
                 return _connectCommand ?? (_connectCommand = new CommandHandler(() => Connect()));
             }
         }
+        // Task task2 = Task.Factory.StartNew(() => FlightBoardVModel.Connect());
 
 
         public void Connect()
@@ -47,11 +48,9 @@ namespace FlightSimulator.ViewModels
             flightInfoModel = new Info(false);
             if (flightInfoModel.flag)
             {
-                Task task4= Task.Factory.StartNew(() => flightInfoModel.MainServer("stop", "0", 0));
+                flightInfoModel.MainServer("stop", "0", 0);
                 Task task2 = Task.Factory.StartNew(() => flightInfoModel.MainServer("start", ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightInfoPort));
                 Task task3 = Task.Factory.StartNew(() => Update());
-                Task task1 = Task.Factory.StartNew(() => Command.Instance.Connect());
-
             }
 
 

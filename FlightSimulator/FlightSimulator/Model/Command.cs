@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
@@ -51,10 +52,10 @@ public class Command
     public void start(string input)
     {
         byte[] data = new byte[1024];
-        NetworkStream ns;
+            BinaryWriter bw;
             if (server != null && server.Connected)
             {
-                ns = server.GetStream();
+                bw =new BinaryWriter( server.GetStream());
 
                 /* int recv = ns.Read(data, 0, data.Length);
                  stringData = Encoding.ASCII.GetString(data, 0, recv);
@@ -68,8 +69,8 @@ public class Command
                 foreach (string cmd in cmds)
                 {
                     string tmpCmd = cmd + "\r\n";
-                    ns.Write(Encoding.ASCII.GetBytes(tmpCmd), 0, tmpCmd.Length);
-                    ns.Flush();
+                    bw.Write(Encoding.ASCII.GetBytes(tmpCmd), 0, tmpCmd.Length);
+                    bw.Flush();
                 }
 
                 /*   data = new byte[1024];
@@ -78,7 +79,7 @@ public class Command
                    Console.WriteLine(stringData);*/
                 //}
                 //Console.WriteLine("Disconnecting from server...");
-                ns.Close();
+                bw.Close();
                 //server.Close();
             }
     }

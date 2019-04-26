@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using FlightSimulator.Model;
+using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.ViewModels
 {
@@ -62,7 +64,11 @@ namespace FlightSimulator.ViewModels
         {
             string currentCommand = setting;
             NotifyPropertyChanged(currentCommand);
-            cmd = new Command(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+            new Thread(delegate ()
+            {
+                Command.Instance.Start(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+            }).Start();
+            
         }
 
 
@@ -118,7 +124,10 @@ namespace FlightSimulator.ViewModels
             Input = "";
             BGColor = Brushes.White;
             NotifyPropertyChanged(Input);
-            cmd = new Command(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+            new Thread(delegate ()
+            {
+                Command.Instance.Start(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+            }).Start();
 
         }
 

@@ -2,18 +2,32 @@
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Windows.Input;
 
-namespace FlightSimulator.Model
+namespace FlightSimulator.Model.Interface
 { 
 
-public class Command
-{
+public class Command: ICommandModel
+    {
 
-    public Command(string input, string flightServerIP, int flightCommandPort)
+        private static ICommandModel c_Instance = null;
+        public static ICommandModel Instance
         {
-            start(input, flightServerIP, flightCommandPort);
+            get
+            {
+                if (c_Instance == null)
+                {
+                    c_Instance = new Command("set /controls/flight/elevator 0", ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+                }
+                return c_Instance;
+            }
         }
-    public void start(string input, string flightServerIP, int flightCommandPort)
+
+        public Command(string input, string flightServerIP, int flightCommandPort)
+        {
+            Start(input, flightServerIP, flightCommandPort);
+        }
+    public void Start(string input, string flightServerIP, int flightCommandPort)
     {
         byte[] data = new byte[1024];
        

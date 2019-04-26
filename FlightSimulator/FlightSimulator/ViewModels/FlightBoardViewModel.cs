@@ -27,9 +27,13 @@ namespace FlightSimulator.ViewModels
         private void Settings()
         {
             if (settingsWindow.IsLoaded)
-                return;
-            settingsWindow.Show();
-                
+                settingsWindow.Show();
+            else
+            {
+                settingsWindow = new Settings();
+                settingsWindow.Show();
+
+            }
         }
 
         private CommandHandler _connectCommand;
@@ -69,8 +73,8 @@ namespace FlightSimulator.ViewModels
                         
                             try
                             {
-                                Lon = flightInfoModel.lanLon[0];
-                                Lat = flightInfoModel.lanLon[1];
+                                Lon = flightInfoModel.latLon[0];
+                                Lat = flightInfoModel.latLon[1];
                             }
                             catch (Exception e) { }
                     }

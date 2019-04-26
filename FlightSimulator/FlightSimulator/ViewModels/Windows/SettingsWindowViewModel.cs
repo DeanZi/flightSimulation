@@ -12,7 +12,7 @@ namespace FlightSimulator.ViewModels.Windows
 {
     public class SettingsWindowViewModel : BaseNotify
     {
-        public ISettingsModel model;
+        public ApplicationSettingsModel model;
 
       
 

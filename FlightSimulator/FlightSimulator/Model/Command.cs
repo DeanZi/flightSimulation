@@ -6,10 +6,15 @@ using System.Windows.Input;
 
 namespace FlightSimulator.Model.Interface
 { 
-
+    /// <summary>
+    /// 
+    /// Command Channel
+    /// </summary>
 public class Command: ICommandModel
     {
-
+        /// <summary>
+        /// singelton design pattern - we want multiple users of the same instance
+        /// </summary>
         private static ICommandModel c_Instance = null;
         public static ICommandModel Instance
         {
@@ -23,50 +28,52 @@ public class Command: ICommandModel
             }
         }
 
+        /// <summary>
+        /// ctor
+        /// </summary>
+        /// <param name="input">the command to be sent</param>
+        /// <param name="flightServerIP">the ip address of the server - flightgear simulator </param>
+        /// <param name="flightCommandPort">the port in which we will open a socket connection </param>
+
         public Command(string input, string flightServerIP, int flightCommandPort)
         {
             Start(input, flightServerIP, flightCommandPort);
         }
-    public void Start(string input, string flightServerIP, int flightCommandPort)
-    {
-        byte[] data = new byte[1024];
+
+
+        /// <summary>
+        /// the actual connection function
+        /// when invoked - it will send to the server the actual command
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="flightServerIP"></param>
+        /// <param name="flightCommandPort"></param>
+
+        public void Start(string input, string flightServerIP, int flightCommandPort)
+        {
+            byte[] data = new byte[1024];
        
-        TcpClient server;
+            TcpClient server;
 
-        try
-        {
-            server = new TcpClient(flightServerIP, flightCommandPort);
-        }
-        catch (SocketException)
-        {
-            Console.WriteLine("Unable to connect to server");
-            return;
-        }
-        NetworkStream ns = server.GetStream();
-
-       /* int recv = ns.Read(data, 0, data.Length);
-        stringData = Encoding.ASCII.GetString(data, 0, recv);
-        Console.WriteLine(stringData);*/
-
-       // while (true)
-        //{
-            //if (input == "exit")
-              //  break;
-            string[] cmds = input.Split('\n');
-            foreach (string cmd in cmds) {
-                    string tmpCmd = cmd + "\r\n";
-                    ns.Write(Encoding.ASCII.GetBytes(tmpCmd), 0, tmpCmd.Length);
-                    ns.Flush();
+            try
+            {
+                server = new TcpClient(flightServerIP, flightCommandPort);
             }
-
-         /*   data = new byte[1024];
-            recv = ns.Read(data, 0, data.Length);
-            stringData = Encoding.ASCII.GetString(data, 0, recv);
-            Console.WriteLine(stringData);*/
-        //}
-        //Console.WriteLine("Disconnecting from server...");
-        ns.Close();
-        server.Close();
+            catch (SocketException)
+            {
+                Console.WriteLine("Unable to connect to server");
+                return;
+            }
+            NetworkStream ns = server.GetStream();
+            string[] cmds = input.Split('\n');
+            foreach (string cmd in cmds)
+                {
+                string tmpCmd = cmd + "\r\n";
+                ns.Write(Encoding.ASCII.GetBytes(tmpCmd), 0, tmpCmd.Length);
+                ns.Flush();
+                }
+            ns.Close();
+            server.Close();
+        }
     }
-}
 }

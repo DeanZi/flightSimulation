@@ -15,7 +15,7 @@ namespace FlightSimulator.Model
     public class Info
     {
         /// <summary>
-        /// singelton design pattern - we want only once to have a server in which we recieve data at
+        /// singleton design pattern - we want only once to have a server in which we recieve data at
         /// </summary>
         /// a flag to let us know if there's an instance of INFO already
         public bool flag = false;

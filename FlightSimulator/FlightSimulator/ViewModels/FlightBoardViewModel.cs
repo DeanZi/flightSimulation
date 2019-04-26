@@ -14,7 +14,6 @@ namespace FlightSimulator.ViewModels
     {
         public Info flightInfoModel;
         public Settings settingsWindow = new Settings();
-
         private CommandHandler _settingsCommand;
         public CommandHandler SettingsCommand
         {
@@ -24,6 +23,7 @@ namespace FlightSimulator.ViewModels
             }
         }
 
+        //Settings button prompts
         private void Settings()
         {
             if (settingsWindow.IsLoaded)
@@ -32,7 +32,6 @@ namespace FlightSimulator.ViewModels
             {
                 settingsWindow = new Settings();
                 settingsWindow.Show();
-
             }
         }
 
@@ -44,9 +43,8 @@ namespace FlightSimulator.ViewModels
                 return _connectCommand ?? (_connectCommand = new CommandHandler(() => Connect()));
             }
         }
-       // Task task2 = Task.Factory.StartNew(() => FlightBoardVModel.Connect());
 
-
+        //Connect button prompts
         public void Connect()
         {
             flightInfoModel = new Info(false);
@@ -56,33 +54,29 @@ namespace FlightSimulator.ViewModels
                 Task task2 = Task.Factory.StartNew(() => flightInfoModel.MainServer("start", ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightInfoPort));
                 Task task3 = Task.Factory.StartNew(() => Update());
             }
-
-            
         }
 
+        //Update Lon & Lat values
         public void Update()
         {
             while (true)
             {
                 if (flightInfoModel != null)
                 {
-
                     if (flightInfoModel.flag)
                     {
-                       
-                        
-                            try
-                            {
-                                Lon = flightInfoModel.latLon[0];
-                                Lat = flightInfoModel.latLon[1];
-                            }
-                            catch (Exception e) { }
+                        try
+                        {
+                            Lon = flightInfoModel.latLon[0];
+                            Lat = flightInfoModel.latLon[1];
+                        }
+                        catch (Exception e) { }
                     }
                 }
             }
-         }
-        
+        }
 
+        //Lon property
         private double lon;
         public double Lon
         {
@@ -90,27 +84,25 @@ namespace FlightSimulator.ViewModels
             {
                 return lon;
             }
-
             set
             {
                 lon = value;
                 NotifyPropertyChanged("Lon");
-
             }
         }
+
+        //Lat property
         private double lat;
         public double Lat
         {
             get
             {
-
                 return lat;
             }
             set
             {
                 lat = value;
                 NotifyPropertyChanged("Lon");
-
             }
         }
     }

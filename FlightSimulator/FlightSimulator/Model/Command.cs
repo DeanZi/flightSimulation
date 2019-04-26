@@ -13,7 +13,7 @@ namespace FlightSimulator.Model.Interface
 public class Command: ICommandModel
     {
         /// <summary>
-        /// singelton design pattern - we want multiple users of the same instance
+        /// singleton design pattern - we want multiple users of the same instance
         /// </summary>
         private static ICommandModel c_Instance = null;
         public static ICommandModel Instance

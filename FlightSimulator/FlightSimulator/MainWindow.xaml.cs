@@ -25,10 +25,6 @@ namespace FlightSimulator
         public MainWindow()
         {
             InitializeComponent();
-            //TcpClientSample newC = new TcpClientSample();
-            //newC.start();
         }
-
-    
     }
 }

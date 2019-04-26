@@ -11,9 +11,9 @@ using FlightSimulator.Model.Interface;
 
 namespace FlightSimulator.ViewModels
 {
+    //View models for both Auto Pilot and Manual views
     class PilotVM : INotifyPropertyChanged
     {
-
         private string throttle;
         public double Throttle
         {
@@ -60,23 +60,20 @@ namespace FlightSimulator.ViewModels
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        //Sends all comands created in manual view to the server
         public void ManualAction(string setting)
         {
-            string currentCommand = setting;
-            NotifyPropertyChanged(currentCommand);
+            NotifyPropertyChanged(setting);
             new Thread(delegate ()
             {
-                Command.Instance.Start(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
-            }).Start();
-            
+                Command.Instance.Start(setting, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
+            }).Start();    
         }
-
 
         protected void NotifyPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
 
         private Brush _bgcolor= Brushes.White;
         public Brush BGColor
@@ -124,11 +121,11 @@ namespace FlightSimulator.ViewModels
             Input = "";
             BGColor = Brushes.White;
             NotifyPropertyChanged(Input);
+            //Take current commands and send it to server
             new Thread(delegate ()
             {
                 Command.Instance.Start(currentCommand, ApplicationSettingsModel.Instance.FlightServerIP, ApplicationSettingsModel.Instance.FlightCommandPort);
             }).Start();
-
         }
 
         private CommandHandler _clearCommand;
@@ -147,6 +144,4 @@ namespace FlightSimulator.ViewModels
             NotifyPropertyChanged(Input);
         }
     }
-
-
 }

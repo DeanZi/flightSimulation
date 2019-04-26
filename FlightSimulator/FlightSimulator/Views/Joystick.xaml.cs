@@ -128,7 +128,6 @@ namespace FlightSimulator.Views
             canvasHeight = Base.ActualHeight - KnobBase.ActualHeight;
             Captured?.Invoke(this);
             Knob.CaptureMouse();
-
             centerKnob.Stop();
         }
 
@@ -146,6 +145,7 @@ namespace FlightSimulator.Views
             double distance = Math.Round(Math.Sqrt(deltaPos.X * deltaPos.X + deltaPos.Y * deltaPos.Y));
             if (distance >= canvasWidth / 2 || distance >= canvasHeight / 2)
                 return;
+            //Round to two digits after dot
             Aileron = Math.Round(-deltaPos.Y/124,2);
             Elevator = Math.Round(deltaPos.X/124,2);
 

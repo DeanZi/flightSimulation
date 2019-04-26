@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -38,19 +39,17 @@ namespace FlightSimulator.Model
                 TcpClient client = server.AcceptTcpClient();  //if a connection exists, the server will accept it
                 Console.WriteLine("1 connected"); //now , we write the message as string
 
-                NetworkStream ns = client.GetStream(); //networkstream is used to send/receive messages
+                BinaryReader ns = new BinaryReader(client.GetStream()); //networkstream is used to send/receive messages
 
                 byte[] hello = new byte[100];   //any message must be serialized (converted to byte array)
-                hello = Encoding.Default.GetBytes("hello world");  //conversion string => byte array
-
-                ns.Write(hello, 0, hello.Length);     //sending the message
+               
                 connect(ns, client);
 
             }
         }
 
 
-        private void connect(NetworkStream ns, TcpClient client)
+        private void connect(BinaryReader ns, TcpClient client)
         {
             while (client.Connected)  //while the client is connected, we look for incoming messages
             {
